@@ -3,17 +3,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 
+
 .title{
-    margin: 20px;
+    margin: 20px 0px;
 }
 
 #buttons {
     display: flex;
-    gap: 12px;
+    width: 500px;
+    justify-content: space-evenly;    
 }
 
 .buttons {
@@ -23,6 +24,8 @@ body {
     font-size: 16px;
     font-weight: 600;
     color: white;
+
+
 }
 
 .drawBlck {
@@ -42,11 +45,17 @@ body {
     background-color: darkslateblue;
 }
 
-#container {
-    border: 1px;
-    max-width: 75%;
-    max-height: auto;
+#grid {
+    border: 1px solid black;
+    margin: 20px;
+    width: 650px;
+    height: 650px;
     border-radius: 4px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.pixel {
+    width: calc(100% / 16);
+    height: calc(100% / 16);
 }
