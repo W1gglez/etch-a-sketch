@@ -1,0 +1,52 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.title{
+    margin: 20px;
+}
+
+#buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.buttons {
+    border: 0px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.drawBlck {
+    background-color: #2e2929;
+
+}
+
+.drawRndm {
+    background-color: rebeccapurple;
+}
+
+.btnClr {
+    background-color: crimson;
+}
+
+.btnSize {
+    background-color: darkslateblue;
+}
+
+#container {
+    border: 1px;
+    max-width: 75%;
+    max-height: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+}
