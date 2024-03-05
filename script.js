@@ -1,51 +1,74 @@
-let grid = document.querySelector('#grid')
-
+const grid = document.querySelector(".grid");
 let gridSize = 16;
+let color = "black";
 
+createGrid(gridSize);
 
-function createGrid(size){
-    
-    for (let i = 0; i < (gridSize * gridSize); i++){
-        let pixel = document.createElement('div')
-        pixel.style.height = (650/ gridSize)
-        pixel.style.width = (650 / gridSize)
-        pixel.classList.add('pixel')
-        grid.appendChild(pixel)
-    }
+function createGrid(size) {
+  for (let i = 0; i < size * size; i++) {
+    let pixel = document.createElement("div");
+    pixel.style.height = 650 / size + "px";
+    pixel.style.width = 650 / size + "px";
+    pixel.classList.add("pixel");
+    pixel.addEventListener("mouseover", () => {
+        if(color === 'random'){
+        pixel.style.backgroundColor = `rgb(${random()},${random()},${random()})`
+        } else{
+            pixel.style.backgroundColor = 'black'
+        }
+    });
+    grid.appendChild(pixel);
+  }
 }
 
+const btnClear = document.querySelector(".btnClr");
 
-const btnClear = document.querySelector('.btnClr')
-
-btnClear.addEventListener('click', clearGrid)
-
-function clearGrid(){
-    let pixel = document.querySelector('.pixel')
-    grid.removeChild(pixel)
-
+function clearGrid() {
+  while (grid.firstChild) {
+    grid.removeChild(grid.firstChild);
+  }
 }
 
-const btnSize = document.querySelector('.btnSize')
+btnClear.addEventListener("click", () => {
+  clearGrid();
+  createGrid(gridSize);
+});
 
-function setSize(){
-    let newSize = parseInt(prompt("How large would you like your canvas:\n Max Size - 100"))
-    clearGrid()
+const btnSize = document.querySelector(".btnSize");
 
-    while(!(typeof(newSize) == 'number') || (0 < newSize && newSize > 100)){
-        console.log(typeof newSize)
-        newSize = parseInt(prompt('- Invalid Argument -\n How large would you like your canvas:\n Max Size - 100'))
-    }
-    
-    createGrid(newSize)
-    for (let i = 0; i < (newSize * newSize); i++){
-        let pixel = document.createElement('div')
-        pixel.style.height = (650/ newSize)
-        pixel.style.width = (650 / newSize)
-        pixel.classList.add('pixel')
-        grid.appendChild(pixel)
-    }
+function setSize() {
+  gridSize = parseInt(
+    prompt("How large would you like your canvas:\n Max Size - 100")
+  );
+
+  while (gridSize % 1 !== 0 || 0 > gridSize || gridSize > 100) {
+    gridSize = parseInt(
+      prompt(
+        "- Invalid Argument -\n How large would you like your canvas:\n Max Size - 100"
+      )
+    );
+  }
+
+  return gridSize;
 }
 
-btnSize.addEventListener('click', setSize)
+btnSize.addEventListener("click", () => {
+  clearGrid();
+  gridSize = setSize();
+  createGrid(gridSize);
+});
 
+const drawBlck = document.querySelector(".drawBlck");
+const drawRndm = document.querySelector(".drawRndm");
 
+drawBlck.addEventListener("click", () => {
+  color = "black";
+});
+
+drawRndm.addEventListener("click", () => {
+  color = 'random'
+});
+
+function random(max=255){
+    return Math.floor(Math.random()*max)
+}

@@ -45,7 +45,7 @@ body {
     background-color: darkslateblue;
 }
 
-#grid {
+.grid {
     border: 1px solid black;
     margin: 20px;
     width: 650px;
